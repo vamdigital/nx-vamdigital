@@ -1,4 +1,4 @@
-import { Components } from '@vam/lib';
+import {Components} from '@vam/shared'
 
 export function App() {
   return (
@@ -9,7 +9,7 @@ export function App() {
       </span>
       <Components />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

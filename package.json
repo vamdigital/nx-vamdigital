@@ -25,6 +25,21 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged npm test"
+    }
+  },
+  "lint-staged": {
+    "*.+(ts|tsx)": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.+(json|css|md)": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "private": true,
   "dependencies": {
     "core-js": "^3.6.5",
@@ -41,6 +56,8 @@
     "@babel/preset-env": "7.12.13",
     "@babel/preset-react": "7.12.13",
     "@babel/preset-typescript": "7.12.13",
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
     "@nrwl/cli": "12.3.4",
     "@nrwl/cypress": "12.3.4",
     "@nrwl/eslint-plugin-nx": "12.3.4",
@@ -71,7 +88,9 @@
     "eslint-plugin-jsx-a11y": "6.4.1",
     "eslint-plugin-react": "7.23.1",
     "eslint-plugin-react-hooks": "4.2.0",
+    "husky": "^6.0.0",
     "jest": "26.2.2",
+    "lint-staged": "^11.0.0",
     "prettier": "2.2.1",
     "ts-jest": "26.5.5",
     "ts-node": "~9.1.1",

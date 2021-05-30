@@ -1,13 +1,13 @@
-import {Components} from '@vam/shared'
+import {Sample} from '@vam/shared'
 
 export function App() {
   return (
     <div>
-      Hey{' '}
+      <h1>Hey</h1>
       <span role="img" aria-label="wave emoji">
         👋
       </span>
-      <Components />
+      <Sample />
     </div>
   )
 }

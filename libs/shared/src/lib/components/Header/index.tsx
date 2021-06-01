@@ -24,7 +24,7 @@ interface IHeader {
   children: React.ReactNode
 }
 
-export default function Header({logo, children}: IHeader) {
+export function Header({logo, children}: IHeader) {
   return (
     <HeaderBar>
       <LogoWrapper>{logo}</LogoWrapper>
@@ -32,3 +32,5 @@ export default function Header({logo, children}: IHeader) {
     </HeaderBar>
   )
 }
+
+export default Header

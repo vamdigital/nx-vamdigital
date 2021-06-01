@@ -1,6 +1,7 @@
 import {Container} from '@material-ui/core'
-import AppBar from '@vam/shared/components/AppBar'
+import {AppBar, Likes} from '@vam/shared/components'
 import {Colour} from '@vam/shared/styles/theme/config'
+import likesIcon from '../../assets/icons/thumbs.svg'
 
 export default function HooksPage() {
   return (
@@ -13,7 +14,15 @@ export default function HooksPage() {
         }}
       />
       <Container>
-        <h1>This is a Hooks page</h1>
+        <Likes
+          {...{
+            likesCount: 1,
+            likesImageSource: likesIcon,
+            likesCountBackground: Colour.successColor,
+            likesCountColor: Colour.whiteColor,
+            clickHandler: () => console.log('Hooks page'),
+          }}
+        />
       </Container>
     </>
   )

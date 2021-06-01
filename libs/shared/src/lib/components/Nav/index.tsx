@@ -20,11 +20,24 @@ const NavListItem = styled.li`
 
   a {
     display: block;
-    padding: 10px;
+    padding: 10px 5px;
+    padding-left: 0;
+
+    &:after {
+      content: '|';
+      padding-left: 5px;
+    }
+  }
+  &:last-child {
+    a {
+      &:after {
+        display: none;
+      }
+    }
   }
 `
 
-export default function Nav() {
+export function Nav() {
   return (
     <NavWrapper>
       <NavList>
@@ -57,3 +70,5 @@ export default function Nav() {
     </NavWrapper>
   )
 }
+
+export default Nav

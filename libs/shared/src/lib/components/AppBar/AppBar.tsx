@@ -5,26 +5,26 @@ import styled from 'styled-components'
 export interface IAppBar {
   title: string
   backgroundColor: string
-  count: number
+  count?: number
 }
 
 const AppBarWrapper = styled.div<{backgroundColor: string}>`
   display: flex;
   width: 100%;
-  background: ${(props) => props.backgroundColor && props.backgroundColor};
+  background: ${(props) => props.backgroundColor};
   padding: 10px 30px;
 `
 
 const TitleWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-  width: 60%;
+  width: 55%;
   color: ${Colour.whiteColor};
   font-size: ${Font.fontmd};
 `
 
 const CounterWrapper = styled(TitleWrapper)`
-  width: 40%;
+  width: 45%;
 `
 
 export default function AppBarComponent({

@@ -16,7 +16,11 @@
     "baseUrl": ".",
     "paths": {
       "@vam/shared/*": ["libs/shared/src/lib/*"],
-      "@vam/shared": ["libs/shared/src/index.ts"]
+      "@vam/shared/components": ["libs/shared/src/lib/components/index.ts"],
+      "@vam/shared/context": ["libs/shared/src/lib/context/index.tsx"],
+      "@vam/shared/redux": ["libs/shared/src/lib/redux/index.tsx"],
+      "@vam/shared/hooks": ["libs/shared/src/lib/hooks/index.tsx"],
+      "@vam/shared/store": ["libs/shared/src/lib/store/index.tsx"]
     }
   },
   "exclude": ["node_modules", "tmp"]

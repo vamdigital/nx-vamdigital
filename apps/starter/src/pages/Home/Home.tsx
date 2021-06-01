@@ -1,5 +1,5 @@
 import {Container} from '@material-ui/core'
-import AppBar from '@vam/shared/components/AppBar'
+import {AppBar} from '@vam/shared/components'
 import {Colour} from '@vam/shared/styles/theme/config'
 
 export default function HomePage() {
@@ -9,7 +9,6 @@ export default function HomePage() {
         {...{
           title: 'Home Page',
           backgroundColor: Colour.secondary,
-          count: 20,
         }}
       />
       <Container>

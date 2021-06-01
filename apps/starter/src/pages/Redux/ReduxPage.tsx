@@ -1,6 +1,7 @@
 import {Container} from '@material-ui/core'
-import AppBar from '@vam/shared/components/AppBar'
+import {AppBar, Likes} from '@vam/shared/components'
 import {Colour} from '@vam/shared/styles/theme/config'
+import likesIcon from '../../assets/icons/thumbs.svg'
 
 export default function ReduxPage() {
   return (
@@ -11,10 +12,17 @@ export default function ReduxPage() {
           backgroundColor: Colour.alertColor,
           count: 12,
         }}
-        s
       />
       <Container>
-        <h1>This is a Hooks page</h1>
+        <Likes
+          {...{
+            likesCount: 1,
+            likesImageSource: likesIcon,
+            likesCountBackground: Colour.alertColor,
+            likesCountColor: Colour.whiteColor,
+            clickHandler: () => console.log('Redux page'),
+          }}
+        />
       </Container>
     </>
   )

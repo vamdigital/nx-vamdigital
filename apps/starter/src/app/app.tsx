@@ -7,8 +7,7 @@ import Hooks from '../pages/Hooks'
 import Redux from '../pages/Redux'
 import HOC from '../pages/HOC'
 /** Components */
-import Header from '@vam/shared/components/Header'
-import Nav from '@vam/shared/components/Nav'
+import {Header, Nav} from '@vam/shared/components'
 /** Assets */
 import {ReactComponent as Logo} from '../assets/icons/logo.svg'
 import NotFound from '../pages/NotFound'

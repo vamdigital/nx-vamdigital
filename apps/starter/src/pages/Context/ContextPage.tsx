@@ -1,6 +1,7 @@
 import {Container} from '@material-ui/core'
-import AppBar from '@vam/shared/components/AppBar'
+import {AppBar, Likes} from '@vam/shared/components'
 import {Colour} from '@vam/shared/styles/theme/config'
+import likesIcon from '../../assets/icons/thumbs.svg'
 
 export default function ContextPage() {
   return (
@@ -13,7 +14,15 @@ export default function ContextPage() {
         }}
       />
       <Container>
-        <h1>This is a Context page</h1>
+        <Likes
+          {...{
+            likesCount: 1,
+            likesImageSource: likesIcon,
+            likesCountBackground: Colour.primary,
+            likesCountColor: Colour.whiteColor,
+            clickHandler: () => console.log('Context page'),
+          }}
+        />
       </Container>
     </>
   )

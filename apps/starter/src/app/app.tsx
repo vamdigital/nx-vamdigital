@@ -11,6 +11,7 @@ import Header from '@vam/shared/components/Header'
 import Nav from '@vam/shared/components/Nav'
 /** Assets */
 import {ReactComponent as Logo} from '../assets/icons/logo.svg'
+import NotFound from '../pages/NotFound'
 
 export function App() {
   return (
@@ -25,6 +26,7 @@ export function App() {
           <Route path="/hooks" element={<Hooks />} />
           <Route path="/redux" element={<Redux />} />
           <Route path="/hoc" element={<HOC />} />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
       </Router>
     </>

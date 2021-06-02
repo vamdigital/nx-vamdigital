@@ -3,7 +3,7 @@ import {AppBar, Likes} from '@vam/shared/components'
 import {Colour} from '@vam/shared/styles/theme/config'
 import likesIcon from '../../assets/icons/thumbs.svg'
 
-import {useLikesContext} from '@vam/shared/context/Likes'
+import {useLikesContext} from '@vam/shared/context'
 
 export default function ContextPage() {
   const {likes, incrementLikes} = useLikesContext()

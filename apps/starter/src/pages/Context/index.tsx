@@ -1,5 +1,10 @@
 import ContextPage from './ContextPage'
+import {LikesProvider} from '@vam/shared/context/Likes'
 
 export default function Context() {
-  return <ContextPage />
+  return (
+    <LikesProvider>
+      <ContextPage />
+    </LikesProvider>
+  )
 }

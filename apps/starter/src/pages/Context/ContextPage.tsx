@@ -3,24 +3,27 @@ import {AppBar, Likes} from '@vam/shared/components'
 import {Colour} from '@vam/shared/styles/theme/config'
 import likesIcon from '../../assets/icons/thumbs.svg'
 
+import {useLikesContext} from '@vam/shared/context/Likes'
+
 export default function ContextPage() {
+  const {likes, incrementLikes} = useLikesContext()
   return (
     <>
       <AppBar
         {...{
           title: 'Context Page',
           backgroundColor: Colour.primary,
-          count: 10,
+          count: likes,
         }}
       />
       <Container>
         <Likes
           {...{
-            likesCount: 1,
+            likesCount: likes,
             likesImageSource: likesIcon,
             likesCountBackground: Colour.primary,
             likesCountColor: Colour.whiteColor,
-            clickHandler: () => console.log('Context page'),
+            clickHandler: () => incrementLikes(),
           }}
         />
       </Container>

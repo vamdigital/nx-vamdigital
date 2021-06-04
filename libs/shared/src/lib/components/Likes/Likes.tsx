@@ -18,6 +18,13 @@ const LikesButton = styled.button`
   cursor: pointer;
   -webkit-appearance: none;
 `
+export interface ILikesProps {
+  likesImageSource: string
+  likesCount: number
+  likesCountBackground: string
+  likesCountColor: string
+  clickHandler: () => void
+}
 
 const LikesCountWrapper = styled.div<
   Pick<ILikesProps, 'likesCountColor' | 'likesCountBackground'>
@@ -29,14 +36,6 @@ const LikesCountWrapper = styled.div<
   color: ${(props) => props.likesCountColor};
   margin-top: -22px;
 `
-
-export interface ILikesProps {
-  likesImageSource: string
-  likesCount: number
-  likesCountBackground: string
-  likesCountColor: string
-  clickHandler: () => void
-}
 
 export function LikesComponent({
   likesImageSource,

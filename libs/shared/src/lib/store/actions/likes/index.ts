@@ -5,3 +5,5 @@ export const likesIncrement = () => {
     type: LIKES_INCREMENT,
   }
 }
+
+export default likesIncrement

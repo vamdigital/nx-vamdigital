@@ -3,12 +3,12 @@ import {Container} from '@material-ui/core'
 import {AppBar, Likes} from '@vam/shared/components'
 import {Colour} from '@vam/shared/styles/theme/config'
 import likesIcon from '../../assets/icons/thumbs.svg'
-import {RootState} from '@vam/shared/store'
 import {likesIncrement} from '@vam/shared/actions'
+import {likesSelector} from '@vam/shared/selectors'
 
 export default function ReduxPage() {
   const dispatch = useDispatch()
-  const count = useSelector((state: RootState) => state.likes.count)
+  const count = useSelector(likesSelector)
   return (
     <>
       <AppBar

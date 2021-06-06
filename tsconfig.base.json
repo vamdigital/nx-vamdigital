@@ -18,9 +18,9 @@
       "@vam/shared/*": ["libs/shared/src/lib/*"],
       "@vam/shared/components": ["libs/shared/src/lib/components/index.ts"],
       "@vam/shared/context": ["libs/shared/src/lib/context/index.tsx"],
-      "@vam/shared/redux": ["libs/shared/src/lib/redux/index.tsx"],
       "@vam/shared/hooks": ["libs/shared/src/lib/hooks/index.tsx"],
-      "@vam/shared/store": ["libs/shared/src/lib/store/index.tsx"]
+      "@vam/shared/actions": ["libs/shared/src/lib/store/actions/index.ts"],
+      "@vam/shared/store": ["libs/shared/src/lib/store/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

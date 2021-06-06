@@ -18,6 +18,7 @@ const LikesButton = styled.button`
   cursor: pointer;
   -webkit-appearance: none;
 `
+
 export interface ILikesProps {
   likesImageSource: string
   likesCount: number

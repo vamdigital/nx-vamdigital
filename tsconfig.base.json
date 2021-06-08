@@ -19,6 +19,7 @@
       "@vam/shared/components": ["libs/shared/src/lib/components/index.ts"],
       "@vam/shared/context": ["libs/shared/src/lib/context/index.tsx"],
       "@vam/shared/hooks": ["libs/shared/src/lib/hooks/index.tsx"],
+      "@vam/shared/HOC": ["libs/shared/src/lib/hoc/index.ts"],
       "@vam/shared/actions": ["libs/shared/src/lib/store/actions/index.ts"],
       "@vam/shared/selectors": ["libs/shared/src/lib/store/selectors/index.ts"],
       "@vam/shared/store": ["libs/shared/src/lib/store/index.ts"]

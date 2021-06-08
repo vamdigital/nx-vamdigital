@@ -3,24 +3,29 @@ import {AppBar, Likes} from '@vam/shared/components'
 import {Colour} from '@vam/shared/styles/theme/config'
 import likesIcon from '../../assets/icons/thumbs.svg'
 
-export default function HOCPage() {
+interface IHOCPage {
+  likesCount: number
+  incrementLikes: () => void
+}
+
+export default function HOCPage({likesCount, incrementLikes}: IHOCPage) {
   return (
     <>
       <AppBar
         {...{
           title: 'HOC Page',
           backgroundColor: Colour.visitedLinkColor,
-          count: 15,
+          count: likesCount,
         }}
       />
       <Container>
         <Likes
           {...{
-            likesCount: 1,
+            likesCount,
             likesImageSource: likesIcon,
             likesCountBackground: Colour.visitedLinkColor,
             likesCountColor: Colour.whiteColor,
-            clickHandler: () => console.log('HOC page'),
+            clickHandler: () => incrementLikes(),
           }}
         />
       </Container>

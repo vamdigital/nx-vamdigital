@@ -1,5 +1,7 @@
 import HOCPage from './HOCPage'
+import {likesHOC} from '@vam/shared/HOC'
 
 export default function HOC() {
-  return <HOCPage />
+  const EnhanceHOCComponent = likesHOC(HOCPage)
+  return <EnhanceHOCComponent />
 }

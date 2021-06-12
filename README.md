@@ -1,5 +1,3 @@
-
-
 # Vamdigital
 
 ### First Steps
@@ -21,3 +19,14 @@
 * Run `yarn` from the root of the folder
 * Run `yarn start` to start the local development server on port 4200
 * Launch the Browser and verify all is working by visiting `http://localhost:4200`
+
+### Deploy to github page - ghpages
+Once you are ready to deploy the site to github run the following commands - [https://emilyxiong.medium.com/deploy-a-nx-react-app-to-github-pages-a83de7551ec0]
+* `yarn preDeploy`
+* `yarn deploy`
+* Login to Github account
+* Go to Repository settings page and select Pages from left side navigation
+* The site should have been published with the link to access it.
+
+Please NOTE in order to publish to GHPages the repository should be Public and not Private or if its Private it should be paid version
+

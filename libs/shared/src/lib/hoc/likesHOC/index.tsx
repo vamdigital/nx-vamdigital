@@ -1,19 +1,25 @@
 import React, {useState} from 'react'
 
-interface IWrapped {
+type IWrapped = {
   likesCount: number
   incrementLikes: () => void
 }
 
-export function likesHOC(WrappedComponent: React.ComponentType<IWrapped>) {
-  return function () {
+export function likesHOC<T>(
+  WrappedComponent: React.ComponentType<T & IWrapped>,
+) {
+  return function (props: T) {
     const [count, setCount] = useState(0)
     const incrementLikes = () => {
       setCount(count + 1)
     }
 
     return (
-      <WrappedComponent likesCount={count} incrementLikes={incrementLikes} />
+      <WrappedComponent
+        {...props}
+        likesCount={count}
+        incrementLikes={incrementLikes}
+      />
     )
   }
 }

@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@starter/components": ["apps/starter/src/components/index.ts"],
       "@vam/shared/*": ["libs/shared/src/lib/*"],
       "@vam/shared/components": ["libs/shared/src/lib/components/index.ts"],
       "@vam/shared/context": ["libs/shared/src/lib/context/index.tsx"],

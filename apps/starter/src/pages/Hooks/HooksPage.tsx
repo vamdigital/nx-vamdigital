@@ -1,5 +1,5 @@
 import {Container} from '@material-ui/core'
-import {AppBar, Likes} from '@vam/shared/components'
+import {AppBar, Likes} from '@starter/components'
 import {Colour} from '@vam/shared/styles/theme/config'
 import likesIcon from '../../assets/icons/thumbs.svg'
 import {useLikes} from '@vam/shared/hooks'

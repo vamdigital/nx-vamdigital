@@ -27,7 +27,7 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-export function Sample(props: SampleProps) {
+export function Sample() {
   const classes = useStyles()
   return (
     <StyledComponents>

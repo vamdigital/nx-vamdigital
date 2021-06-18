@@ -1,16 +1,16 @@
 /** Packages */
 import {HashRouter as Router, Routes, Route} from 'react-router-dom'
 /**Pages  */
-import Context from '../pages/Context'
-import Home from '../pages/Home'
-import Hooks from '../pages/Hooks'
-import Redux from '../pages/Redux'
-import HOC from '../pages/HOC'
+import Context from '../../pages/Context'
+import Home from '../../pages/Home'
+import Hooks from '../../pages/Hooks'
+import Redux from '../../pages/Redux'
+import HOC from '../../pages/HOC'
+import NotFound from '../../pages/NotFound'
 /** Components */
-import {Header, Nav} from '@vam/shared/components'
+import {Header, Nav} from '@starter/components'
 /** Assets */
-import {ReactComponent as Logo} from '../assets/icons/logo.svg'
-import NotFound from '../pages/NotFound'
+import {ReactComponent as Logo} from '../../assets/icons/logo.svg'
 
 export function App() {
   return (

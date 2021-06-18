@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import {ThemeProvider} from '@material-ui/core/styles'
 import {theme} from '@vam/shared/styles/theme'
 
-import App from './app/app'
+import App from './components/app/app'
 
 ReactDOM.render(
   <StrictMode>

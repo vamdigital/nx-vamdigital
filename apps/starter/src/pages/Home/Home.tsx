@@ -1,5 +1,5 @@
 import {Container} from '@material-ui/core'
-import {AppBar} from '@vam/shared/components'
+import {AppBar} from '@starter/components'
 import {Colour} from '@vam/shared/styles/theme/config'
 
 export default function HomePage() {

@@ -3,5 +3,5 @@ import {likesHOC} from '@vam/shared/HOC'
 
 export default function HOC() {
   const EnhanceHOCComponent = likesHOC(HOCPage)
-  return <EnhanceHOCComponent />
+  return <EnhanceHOCComponent {...{title: 'Hello and welcome to HOC'}} />
 }

@@ -3,12 +3,20 @@ import {AppBar, Likes} from '@starter/components'
 import {Colour} from '@vam/shared/styles/theme/config'
 import likesIcon from '../../assets/icons/thumbs.svg'
 
-interface IHOCPage {
+type IHOCPage = {
   likesCount: number
   incrementLikes: () => void
 }
 
-export default function HOCPage({likesCount, incrementLikes}: IHOCPage) {
+type IProps = {
+  title: string
+}
+
+export default function HOCPage({
+  likesCount,
+  incrementLikes,
+  title,
+}: IHOCPage & IProps) {
   return (
     <>
       <AppBar
@@ -19,6 +27,7 @@ export default function HOCPage({likesCount, incrementLikes}: IHOCPage) {
         }}
       />
       <Container>
+        <h1>{title}</h1>
         <Likes
           {...{
             likesCount,

@@ -11,7 +11,7 @@ import {exec} from 'child_process'
  * 4- run git init
  */
 
-const defaultFolderName = 'vam-base'
+const defaultFolderName = 'vam-nxbase'
 const initWorkingDirectory = process.cwd()
 
 let folderName = defaultFolderName
@@ -53,7 +53,6 @@ async function setup() {
     appendFileSync('.gitignore', '\r\n.env', 'utf8')
 
     /** remove extra files and folders from disk. we don't need it anymore */
-    unlinkSync(join(process.cwd(), 'CHANGELOG.md'))
     unlinkSync(join(process.cwd(), 'README.md'))
     unlinkSync(join(process.cwd(), 'bin', 'setup.js'))
     rmdirSync(join(process.cwd(), 'bin'))

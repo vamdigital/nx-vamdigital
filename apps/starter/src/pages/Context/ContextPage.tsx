@@ -10,21 +10,17 @@ export default function ContextPage() {
   return (
     <>
       <AppBar
-        {...{
-          title: 'Context Page',
-          backgroundColor: Colour.primary,
-          count: likes,
-        }}
+        backgroundColor={Colour.primary}
+        count={likes}
+        title="Context page"
       />
       <Container>
         <Likes
-          {...{
-            likesCount: likes,
-            likesImageSource: likesIcon,
-            likesCountBackground: Colour.primary,
-            likesCountColor: Colour.whiteColor,
-            clickHandler: () => incrementLikes(),
-          }}
+          likesCount={likes}
+          likesImageSource={likesIcon}
+          likesCountBackground={Colour.primary}
+          likesCountColor={Colour.whiteColor}
+          clickHandler={() => incrementLikes()}
         />
       </Container>
     </>

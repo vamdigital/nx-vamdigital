@@ -48,6 +48,7 @@ async function setup() {
     rainbow.start()
 
     setTimeout(() => {
+      console.log()
       console.log(`installing dependencies, please wait...`)
     }, 1500)
     await runShellCmd(`npm i`)

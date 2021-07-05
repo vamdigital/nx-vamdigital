@@ -3,6 +3,7 @@ import {promisify} from 'util'
 import {join} from 'path'
 import {appendFileSync, unlinkSync, rmdirSync} from 'fs'
 import {exec} from 'child_process'
+import chalAnimation from 'chalk-animation'
 
 /** Steps:
  * 1- create folder
@@ -10,6 +11,8 @@ import {exec} from 'child_process'
  * 3- run npm install
  * 4- run git init
  */
+
+const rainbow = chalAnimation.rainbow('VAM Digital')
 
 const defaultFolderName = 'vam-nxbase'
 const initWorkingDirectory = process.cwd()
@@ -22,7 +25,7 @@ if (process.argv.slice(2).length > 0) {
 const folderPath = join(initWorkingDirectory, folderName)
 
 const repo = 'https://github.com/vamdigital/nx-vamdigital.git'
-console.log(`downloadin files from repo ${repo}`)
+console.log(`downloadin files from repo ${repo} 🚀`)
 
 const execPromise = promisify(exec)
 async function runShellCmd(command) {
@@ -42,12 +45,16 @@ async function setup() {
     await runShellCmd(`git clone --depth 1 ${repo} ${folderName}`)
     process.chdir(folderPath)
 
-    console.log(`installing dependencies, please wait...`)
+    rainbow.start()
+
+    setTimeout(() => {
+      console.log(`installing dependencies, please wait...`)
+    }, 1500)
     await runShellCmd(`npm i`)
+
     console.log(`dependencies installed successfully!`)
 
     await runShellCmd(`npx rimraf ./.git`)
-    console.log(`old .git folder deleted successfully!`)
 
     appendFileSync('.gitignore', '\r\ndist', 'utf8')
     appendFileSync('.gitignore', '\r\n.env', 'utf8')
@@ -59,14 +66,13 @@ async function setup() {
 
     await runShellCmd(`git init && git add . && git commit -am "init commit"`)
     console.log(`new git repo initialized successfully!`)
-
     console.log(`Commands to run the project:`)
     console.log()
     console.log(`cd ${folderName}`)
     console.log()
     console.log(`npm start`)
     console.log()
-    console.log(`Happy Hacking!`)
+    console.log(`Happy Hacking! 🚀`)
   } catch (error) {
     console.log(error)
   }

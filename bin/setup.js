@@ -25,7 +25,6 @@ if (process.argv.slice(2).length > 0) {
 const folderPath = join(initWorkingDirectory, folderName)
 
 const repo = 'https://github.com/vamdigital/nx-vamdigital.git'
-console.log(`downloadin files from repo ${repo} 🚀`)
 
 const execPromise = promisify(exec)
 async function runShellCmd(command) {

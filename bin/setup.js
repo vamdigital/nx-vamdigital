@@ -13,7 +13,7 @@ import chalAnimation from 'chalk-animation'
  * 4- run git init
  */
 
-const rainbow = chalAnimation.rainbow('VAM Digital')
+const rainbow = chalAnimation.rainbow('VAM Digital', 2)
 
 const defaultFolderName = 'vam-nxbase'
 const initWorkingDirectory = process.cwd()
@@ -46,6 +46,40 @@ async function setup() {
     await runShellCmd(`git clone --depth 1 ${repo} ${folderName}`)
     process.chdir(folderPath)
     rainbow.start()
+
+    // Remove items from Package.json files
+    fs.readFile(`${folderPath}/package.json`, 'utf8', function (err, data) {
+      if (err) {
+        return console.log(err)
+      }
+      let result = data.toString()
+      result = JSON.parse(result)
+
+      // remove type / repository / bin
+      delete result['type']
+      delete result['repository']
+      delete result['bin']
+      delete result['dependencies']['chalk-animation']
+
+      //Change Items
+      result['name'] = folderName
+      result['description'] = ''
+      result['version'] = '0.0.0'
+
+      // stringify back
+      result = JSON.stringify(result)
+
+      // write back to the file
+      fs.writeFile(
+        `${folderPath}/package.json`,
+        result,
+        'utf8',
+        function (err) {
+          if (err) return console.log(err)
+        },
+      )
+    })
+
     setTimeout(() => {
       console.log()
       console.log(`installing dependencies, please wait...`)

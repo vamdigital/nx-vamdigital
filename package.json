@@ -1,12 +1,12 @@
 {
-  "name": "create-vam-starter",
+  "name": "create-vam-app",
   "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/vamdigital/nx-vamdigital.git"
   },
   "description": "VAM Digital NX project starter pack",
-  "version": "0.0.3",
+  "version": "0.0.0",
   "license": "MIT",
   "bin": "bin/setup.js",
   "scripts": {

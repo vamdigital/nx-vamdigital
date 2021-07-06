@@ -121,6 +121,18 @@ async function setup() {
 
     await runShellCmd(`git init && git add . && git commit -am "init commit"`)
     console.log(`new git repo initialized successfully!`)
+
+    await runShellCmd(
+      `git grep -lz @starter | xargs -0 sed -i '' -e 's/@starter/@${folderName}/g'`,
+    )
+
+    console.log('Imports updated')
+
+    await runShellCmd(
+      `git init && git add . && git commit -am "change reference of imports"`,
+    )
+    console.log(`git committed successfully!`)
+
     console.log(`Commands to run the project:`)
     console.log()
     console.log(`cd ${folderName}`)

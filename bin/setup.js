@@ -119,9 +119,22 @@ async function setup() {
     unlinkSync(join(process.cwd(), 'bin', 'setup.js'))
     rmdirSync(join(process.cwd(), 'bin'))
 
+    /** Changing the title of the page from Starter to folderName */
+    const indexFilePath = `${folderPath}/apps/${folderName}/src/index.html`
+    fs.readFile(indexFilePath, 'utf-8', function (err, data) {
+      if (err) console.log(err)
+      let newValue = data.replace(/Starter/g, `${folderName}`)
+
+      fs.writeFile(indexFilePath, newValue, 'utf-8', function (err, _data) {
+        if (err) console.log(err)
+        console.log('Title changed')
+      })
+    })
+
     await runShellCmd(`git init && git add . && git commit -am "init commit"`)
     console.log(`new git repo initialized successfully!`)
 
+    // Changing reference of imports from @starter/component to folderName/component
     await runShellCmd(
       `git grep -lz @starter | xargs -0 sed -i '' -e 's/@starter/@${folderName}/g'`,
     )

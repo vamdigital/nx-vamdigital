@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import fs from 'fs'
 import {promisify} from 'util'
 import {join} from 'path'
 import {appendFileSync, unlinkSync, rmdirSync} from 'fs'
@@ -52,6 +53,27 @@ async function setup() {
     await runShellCmd(`npm i`)
 
     console.log(`dependencies installed successfully!`)
+
+    // Rename files and folder
+    console.log('Updating folder Name')
+    const oldDirName = `${folderPath}/apps/starter`
+    const newDirName = `${folderPath}/apps/${folderName}`
+    const oldDirE2E = `${folderPath}/apps/starter-e2e`
+    const newDirE2E = `${folderPath}/apps/${folderName}-e2e`
+
+    try {
+      fs.renameSync(oldDirName, newDirName)
+      fs.renameSync(oldDirE2E, newDirE2E)
+    } catch (err) {
+      console.log(err)
+    }
+
+    // Changing the instance of starter to folderName
+    console.log('Updating references....')
+    await runShellCmd(
+      `git grep -lz starter | xargs -0 sed -i '' -e 's/starter/${folderName}/g'`,
+    )
+    console.log('References updated')
 
     await runShellCmd(`npx rimraf ./.git`)
 

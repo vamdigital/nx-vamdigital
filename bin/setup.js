@@ -5,30 +5,17 @@ import {join} from 'path'
 import {appendFileSync, unlinkSync, rmdirSync} from 'fs'
 import {exec} from 'child_process'
 import chalAnimation from 'chalk-animation'
-
-/** Steps:
- * 1- create folder
- * 2- copy files to created folder
- * 3- run npm install
- * 4- run git init
- */
+import inquirer from 'inquirer'
 
 const rainbow = chalAnimation.rainbow('VAM Digital', 2)
-
-const defaultFolderName = 'vam-nxbase'
+const defaultFolderName = 'my-app'
 const initWorkingDirectory = process.cwd()
-
 let folderName = defaultFolderName
-if (process.argv.slice(2).length > 0) {
-  folderName = process.argv.slice(2)[0]
-}
-
-const folderPath = join(initWorkingDirectory, folderName)
-
 const repo = 'https://github.com/vamdigital/nx-vamdigital.git'
+const execPromise = promisify(exec)
+
 console.log(`downloadin files from repo ${repo} 🚀`)
 
-const execPromise = promisify(exec)
 async function runShellCmd(command) {
   try {
     const {stdout, stderr} = await execPromise(command)
@@ -41,9 +28,10 @@ async function runShellCmd(command) {
   }
 }
 
-async function setup() {
+async function setup(folder) {
+  const folderPath = join(initWorkingDirectory, folder)
   try {
-    await runShellCmd(`git clone --depth 1 ${repo} ${folderName}`)
+    await runShellCmd(`git clone --depth 1 ${repo} ${folder}`)
     process.chdir(folderPath)
     rainbow.start()
 
@@ -60,9 +48,10 @@ async function setup() {
       delete result['repository']
       delete result['bin']
       delete result['dependencies']['chalk-animation']
+      delete result['dependencies']['inquirer']
 
       //Change Items
-      result['name'] = folderName
+      result['name'] = folder
       result['description'] = ''
       result['version'] = '0.0.0'
 
@@ -91,9 +80,9 @@ async function setup() {
     // Rename files and folder
     console.log('Updating folder Name')
     const oldDirName = `${folderPath}/apps/starter`
-    const newDirName = `${folderPath}/apps/${folderName}`
+    const newDirName = `${folderPath}/apps/${folder}`
     const oldDirE2E = `${folderPath}/apps/starter-e2e`
-    const newDirE2E = `${folderPath}/apps/${folderName}-e2e`
+    const newDirE2E = `${folderPath}/apps/${folder}-e2e`
 
     try {
       fs.renameSync(oldDirName, newDirName)
@@ -105,7 +94,7 @@ async function setup() {
     // Changing the instance of starter to folderName
     console.log('Updating references....')
     await runShellCmd(
-      `git grep -lz starter | xargs -0 sed -i '' -e 's/starter/${folderName}/g'`,
+      `git grep -lz starter | xargs -0 sed -i '' -e 's/starter/${folder}/g'`,
     )
     console.log('References updated')
 
@@ -120,10 +109,10 @@ async function setup() {
     rmdirSync(join(process.cwd(), 'bin'))
 
     /** Changing the title of the page from Starter to folderName */
-    const indexFilePath = `${folderPath}/apps/${folderName}/src/index.html`
+    const indexFilePath = `${folderPath}/apps/${folder}/src/index.html`
     fs.readFile(indexFilePath, 'utf-8', function (err, data) {
       if (err) console.log(err)
-      let newValue = data.replace(/Starter/g, `${folderName}`)
+      let newValue = data.replace(/Starter/g, `${folder}`)
 
       fs.writeFile(indexFilePath, newValue, 'utf-8', function (err, _data) {
         if (err) console.log(err)
@@ -136,7 +125,7 @@ async function setup() {
 
     // Changing reference of imports from @starter/component to folderName/component
     await runShellCmd(
-      `git grep -lz @starter | xargs -0 sed -i '' -e 's/@starter/@${folderName}/g'`,
+      `git grep -lz @starter | xargs -0 sed -i '' -e 's/@starter/@${folder}/g'`,
     )
 
     console.log('Imports updated')
@@ -148,7 +137,7 @@ async function setup() {
 
     console.log(`Commands to run the project:`)
     console.log()
-    console.log(`cd ${folderName}`)
+    console.log(`cd ${folder}`)
     console.log()
     console.log(`npm start`)
     console.log()
@@ -158,4 +147,19 @@ async function setup() {
   }
 }
 
-setup()
+/** Prompter using inquirer to set the Project name */
+function prompter() {
+  inquirer
+    .prompt([
+      {
+        name: 'projectName',
+        message: 'What is the name of your project?',
+      },
+    ])
+    .then((answers) => {
+      folderName = answers.projectName
+      setup(folderName)
+    })
+}
+
+prompter()

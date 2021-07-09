@@ -9,4 +9,19 @@ describe('AppBar Component', () => {
     const appBarComponent = queryByTestId('AppBar')
     expect(appBarComponent).toBeTruthy()
   })
+  it('Should NOT Render the Count', () => {
+    const {queryByTestId} = render(
+      <AppBar title="App Title" backgroundColor="#222" />,
+    )
+    const countEl = queryByTestId('count')
+    expect(countEl).toBeFalsy()
+  })
+
+  it('Should Render the Count', () => {
+    const {queryByTestId} = render(
+      <AppBar title="App Title" backgroundColor="#222" count={2} />,
+    )
+    const countEl = queryByTestId('count')
+    expect(countEl).toBeTruthy()
+  })
 })

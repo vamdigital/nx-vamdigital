@@ -1,11 +1,10 @@
 #!/usr/bin/env node
-import fs from 'fs'
-import {promisify} from 'util'
-import {join} from 'path'
-import {appendFileSync, unlinkSync, rmdirSync} from 'fs'
-import {exec} from 'child_process'
 import chalAnimation from 'chalk-animation'
+import {exec} from 'child_process'
+import fs, {appendFileSync, rmdirSync, unlinkSync} from 'fs'
 import inquirer from 'inquirer'
+import {join} from 'path'
+import {promisify} from 'util'
 
 const rainbow = chalAnimation.rainbow('VAM Digital', 2)
 const defaultFolderName = 'my-app'
@@ -21,10 +20,8 @@ async function runShellCmd(command) {
     const {stdout, stderr} = await execPromise(command)
     console.log(stdout)
     console.log(stderr)
-  } catch {
-    ;(err) => {
-      console.error(err)
-    }
+  } catch (err) {
+    console.error(err)
   }
 }
 
@@ -63,8 +60,8 @@ async function setup(folder) {
         `${folderPath}/package.json`,
         result,
         'utf8',
-        function (err) {
-          if (err) return console.log(err)
+        function (error) {
+          if (error) return console.log(error)
         },
       )
     })
@@ -110,14 +107,19 @@ async function setup(folder) {
 
     /** Changing the title of the page from Starter to folderName */
     const indexFilePath = `${folderPath}/apps/${folder}/src/index.html`
-    fs.readFile(indexFilePath, 'utf-8', function (err, data) {
-      if (err) console.log(err)
+    fs.readFile(indexFilePath, 'utf-8', function (readFileError, data) {
+      if (readFileError) console.log(readFileError)
       let newValue = data.replace(/Starter/g, `${folder}`)
 
-      fs.writeFile(indexFilePath, newValue, 'utf-8', function (err, _data) {
-        if (err) console.log(err)
-        console.log('Title changed')
-      })
+      fs.writeFile(
+        indexFilePath,
+        newValue,
+        'utf-8',
+        function (writeFileError, _data) {
+          if (writeFileError) console.log(writeFileError)
+          console.log('Title changed')
+        },
+      )
     })
 
     await runShellCmd(`git init && git add . && git commit -am "init commit"`)

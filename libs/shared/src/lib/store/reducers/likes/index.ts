@@ -1,4 +1,4 @@
-import {LIKES_INCREMENT, ActionType} from '../../types'
+import {ActionType, LIKES_INCREMENT} from '../../types'
 
 export interface IState {
   count: number
@@ -10,13 +10,11 @@ export const initialState = {
 
 export const likesReducer = (state = initialState, action: ActionType) => {
   const {type} = action
-  switch (type) {
-    case LIKES_INCREMENT:
-      return {
-        ...state,
-        count: state.count + 1,
-      }
-    default:
-      return state
+  if (type === LIKES_INCREMENT) {
+    return {
+      ...state,
+      count: state.count + 1,
+    }
   }
+  return state
 }

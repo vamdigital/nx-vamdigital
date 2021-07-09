@@ -7,7 +7,9 @@ export interface ILikesContext {
 
 export const initialState: ILikesContext = {
   likes: 0,
-  incrementLikes: () => {},
+  incrementLikes: () => {
+    // This is signature of the function. Intentionally left blank
+  },
 }
 
 const LikesContext = createContext(initialState)

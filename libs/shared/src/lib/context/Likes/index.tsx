@@ -1,7 +1,7 @@
 import React, {useContext, useReducer} from 'react'
 import LikesContext, {initialState} from './context'
+import likesReducer from './likesReducer'
 import {LikesAction} from './types'
-import likesReducer from './reducer'
 
 interface ILikesProvider {
   children: React.ReactNode

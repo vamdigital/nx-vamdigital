@@ -14,7 +14,6 @@
     "build": "nx build",
     "test": "nx test",
     "coverage": "nx affected:test --codeCoverage",
-    "coverageSingleFile": "yarn jest test $npm_config_fileName --coverage --collectCoverageFrom=$npm_config_filePath --watch",
     "preDeploy": "nx build --outputPath='dist/apps/starter'  --baseHref='/nx-vamdigital/'",
     "deploy": "gh-pages -d dist/apps/starter",
     "lint": "nx workspace-lint && nx lint",

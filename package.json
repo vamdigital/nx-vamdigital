@@ -1,5 +1,6 @@
 {
   "name": "create-vam-app",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/vamdigital/nx-vamdigital.git"

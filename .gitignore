@@ -8,6 +8,10 @@
 # dependencies
 /node_modules
 
+# sonarQube scanner
+.sonar
+.scannerwork
+
 # IDEs and editors
 /.idea
 .project

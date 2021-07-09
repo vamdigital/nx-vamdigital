@@ -1,4 +1,3 @@
-import {Container} from '@material-ui/core'
 import {Colour, Font} from '@vam/shared/styles/theme/config'
 import styled from 'styled-components'
 
@@ -33,9 +32,9 @@ export default function AppBarComponent({
   count,
 }: IAppBar) {
   return (
-    <AppBarWrapper backgroundColor={backgroundColor}>
+    <AppBarWrapper backgroundColor={backgroundColor} data-testid="AppBar">
       <TitleWrapper>{title}</TitleWrapper>
-      <CounterWrapper>{count}</CounterWrapper>
+      {count && <CounterWrapper data-testid="count">{count}</CounterWrapper>}
     </AppBarWrapper>
   )
 }

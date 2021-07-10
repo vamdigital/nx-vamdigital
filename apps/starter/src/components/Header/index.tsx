@@ -1,5 +1,6 @@
-import styled from 'styled-components'
+import {Typography} from '@material-ui/core'
 import {Colour} from '@vam/shared/styles/theme/config'
+import styled from 'styled-components'
 
 const HeaderBar = styled.header`
   padding: 20px;
@@ -12,6 +13,9 @@ const HeaderBar = styled.header`
 const LogoWrapper = styled.div`
   display: flex;
   align-content: flex-start;
+  h1 {
+    text-transform: uppercase;
+  }
 `
 
 const NavWrapper = styled.div`
@@ -27,7 +31,11 @@ interface IHeader {
 export function Header({logo, children}: IHeader) {
   return (
     <HeaderBar>
-      <LogoWrapper>{logo}</LogoWrapper>
+      <LogoWrapper>
+        <Typography variant="h1" component="h1" gutterBottom>
+          Starter
+        </Typography>
+      </LogoWrapper>
       <NavWrapper>{children}</NavWrapper>
     </HeaderBar>
   )

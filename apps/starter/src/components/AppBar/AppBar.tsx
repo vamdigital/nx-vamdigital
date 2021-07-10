@@ -34,7 +34,7 @@ export default function AppBarComponent({
   return (
     <AppBarWrapper backgroundColor={backgroundColor} data-testid="AppBar">
       <TitleWrapper>{title}</TitleWrapper>
-      {count && <CounterWrapper data-testid="count">{count}</CounterWrapper>}
+      <CounterWrapper data-testid="count">{count}</CounterWrapper>
     </AppBarWrapper>
   )
 }

@@ -110,7 +110,7 @@ async function setup() {
     const indexFilePath = `${folderPath}/apps/${folderName}/src/index.html`
     fs.readFile(indexFilePath, 'utf-8', function (readFileError, data) {
       if (readFileError) console.log(readFileError)
-      let newValue = data.replace(/Starter/g, `${folder}`)
+      let newValue = data.replace(/Starter/g, `${folderName}`)
 
       fs.writeFile(
         indexFilePath,

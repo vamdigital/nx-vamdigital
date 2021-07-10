@@ -10,6 +10,7 @@ const rainbow = chalAnimation.rainbow('VAM Digital', 2)
 const defaultFolderName = 'my-app'
 const initWorkingDirectory = process.cwd()
 let folderName = defaultFolderName
+let isVSCode = false
 const repo = 'https://github.com/vamdigital/nx-vamdigital.git'
 const execPromise = promisify(exec)
 
@@ -25,10 +26,10 @@ async function runShellCmd(command) {
   }
 }
 
-async function setup(folder, isVSCode = false) {
-  const folderPath = join(initWorkingDirectory, folder)
+async function setup() {
+  const folderPath = join(initWorkingDirectory, folderName)
   try {
-    await runShellCmd(`git clone --depth 1 ${repo} ${folder}`)
+    await runShellCmd(`git clone --depth 1 ${repo} ${folderName}`)
     process.chdir(folderPath)
     rainbow.start()
 
@@ -48,7 +49,7 @@ async function setup(folder, isVSCode = false) {
       delete result['dependencies']['inquirer']
 
       //Change Items
-      result['name'] = folder
+      result['name'] = folderName
       result['description'] = ''
       result['version'] = '0.0.0'
 
@@ -77,9 +78,9 @@ async function setup(folder, isVSCode = false) {
     // Rename files and folder
     console.log('Updating folder Name')
     const oldDirName = `${folderPath}/apps/starter`
-    const newDirName = `${folderPath}/apps/${folder}`
+    const newDirName = `${folderPath}/apps/${folderName}`
     const oldDirE2E = `${folderPath}/apps/starter-e2e`
-    const newDirE2E = `${folderPath}/apps/${folder}-e2e`
+    const newDirE2E = `${folderPath}/apps/${folderName}-e2e`
 
     try {
       fs.renameSync(oldDirName, newDirName)
@@ -91,7 +92,7 @@ async function setup(folder, isVSCode = false) {
     // Changing the instance of starter to folderName
     console.log('Updating references....')
     await runShellCmd(
-      `git grep -lz starter | xargs -0 sed -i '' -e 's/starter/${folder}/g'`,
+      `git grep -lz starter | xargs -0 sed -i '' -e 's/starter/${folderName}/g'`,
     )
     console.log('References updated')
 
@@ -106,7 +107,7 @@ async function setup(folder, isVSCode = false) {
     rmdirSync(join(process.cwd(), 'bin'))
 
     /** Changing the title of the page from Starter to folderName */
-    const indexFilePath = `${folderPath}/apps/${folder}/src/index.html`
+    const indexFilePath = `${folderPath}/apps/${folderName}/src/index.html`
     fs.readFile(indexFilePath, 'utf-8', function (readFileError, data) {
       if (readFileError) console.log(readFileError)
       let newValue = data.replace(/Starter/g, `${folder}`)
@@ -127,7 +128,7 @@ async function setup(folder, isVSCode = false) {
 
     // Changing reference of imports from @starter/component to folderName/component
     await runShellCmd(
-      `git grep -lz @starter | xargs -0 sed -i '' -e 's/@starter/@${folder}/g'`,
+      `git grep -lz @starter | xargs -0 sed -i '' -e 's/@starter/@${folderName}/g'`,
     )
 
     console.log('Imports updated')
@@ -139,7 +140,7 @@ async function setup(folder, isVSCode = false) {
 
     console.log(`Commands to run the project:`)
     console.log()
-    console.log(`cd ${folder}`)
+    console.log(`cd ${folderName}`)
     console.log()
     console.log(`npm start`)
     console.log()
@@ -170,7 +171,7 @@ function prompter() {
     .then((answers) => {
       folderName = answers.projectName
       isVSCode = answers.isVSCode
-      setup(folderName, isVSCode)
+      setup()
     })
 }
 

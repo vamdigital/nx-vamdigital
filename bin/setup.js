@@ -13,7 +13,7 @@ let folderName = defaultFolderName
 const repo = 'https://github.com/vamdigital/nx-vamdigital.git'
 const execPromise = promisify(exec)
 
-console.log(`downloadin files from repo ${repo} 🚀`)
+console.log(`downloading files 🚀`)
 
 async function runShellCmd(command) {
   try {
@@ -40,7 +40,7 @@ async function setup(folder) {
       let result = data.toString()
       result = JSON.parse(result)
 
-      // remove type / repository / bin
+      // remove type / repository / bin / dependencies
       delete result['type']
       delete result['repository']
       delete result['bin']

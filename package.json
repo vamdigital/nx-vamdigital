@@ -6,7 +6,7 @@
     "url": "https://github.com/vamdigital/nx-vamdigital.git"
   },
   "description": "VAM Digital NX project starter pack",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "bin": "bin/setup.js",
   "scripts": {

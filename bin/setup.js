@@ -25,7 +25,7 @@ async function runShellCmd(command) {
   }
 }
 
-async function setup(folder) {
+async function setup(folder, isVSCode = false) {
   const folderPath = join(initWorkingDirectory, folder)
   try {
     await runShellCmd(`git clone --depth 1 ${repo} ${folder}`)
@@ -144,6 +144,10 @@ async function setup(folder) {
     console.log(`npm start`)
     console.log()
     console.log(`Happy Hacking! 🚀`)
+    if (isVSCode) {
+      console.log(`starting vscode...`)
+      runShellCmd(`code ${folderPath}`)
+    }
   } catch (error) {
     console.log(error)
   }
@@ -157,10 +161,16 @@ function prompter() {
         name: 'projectName',
         message: 'What is the name of your project?',
       },
+      {
+        type: 'confirm',
+        name: 'isVSCode',
+        message: 'Do you want cli to open this Project in VSCode?',
+      },
     ])
     .then((answers) => {
       folderName = answers.projectName
-      setup(folderName)
+      isVSCode = answers.isVSCode
+      setup(folderName, isVSCode)
     })
 }
 

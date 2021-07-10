@@ -148,6 +148,8 @@ async function setup() {
     if (isVSCode) {
       console.log(`starting vscode...`)
       runShellCmd(`code ${folderPath}`)
+      console.log(`closing terminal...`)
+      runShellCmd(`exit`)
     }
   } catch (error) {
     console.log(error)

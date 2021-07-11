@@ -92,7 +92,7 @@ async function setup() {
     // Changing the instance of starter to folderName
     console.log('Updating references....')
     await runShellCmd(
-      `git grep -lz starter | xargs -0 sed -i '' -e 's/starter/${folderName}/g'`,
+      `git grep -lz starter | xargs -0 sed -i '' -e 's/starter/${folderName}/gi'`,
     )
     console.log('References updated')
 

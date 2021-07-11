@@ -126,6 +126,22 @@ async function setup() {
     await runShellCmd(`git init && git add . && git commit -am "init commit"`)
     console.log(`new git repo initialized successfully!`)
 
+    // Rename commitlint file
+    fs.rename(
+      './commitlint.config.cjs',
+      './commitlint.config.js',
+      (renameErr) => {
+        if (renameErr) console.log(renameErr)
+      },
+    )
+    console.log('Renamed commitLint config file 🗂')
+
+    //Append to pre-commit file
+    fs.appendFile('./.husky/pre-commit', 'npm test', (fileAppendErr) => {
+      if (fileAppendErr) console.log(fileAppendErr)
+    })
+    console.log('Append npm test to the file ✍️')
+
     // Changing reference of imports from @starter/component to folderName/component
     await runShellCmd(
       `git grep -lz @starter | xargs -0 sed -i '' -e 's/@starter/@${folderName}/gi'`,

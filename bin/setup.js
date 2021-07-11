@@ -128,7 +128,7 @@ async function setup() {
 
     // Changing reference of imports from @starter/component to folderName/component
     await runShellCmd(
-      `git grep -lz @starter | xargs -0 sed -i '' -e 's/@starter/@${folderName}/g'`,
+      `git grep -lz @starter | xargs -0 sed -i '' -e 's/@starter/@${folderName}/gi'`,
     )
 
     console.log('Imports updated')

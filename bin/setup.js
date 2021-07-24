@@ -6,7 +6,7 @@ import inquirer from 'inquirer'
 import {join} from 'path'
 import {promisify} from 'util'
 
-const rainbow = chalAnimation.rainbow('VAM Digital', 2)
+const rainbow = chalAnimation.rainbow('VAM Digital `°m~', 2)
 const defaultFolderName = 'my-app'
 const initWorkingDirectory = process.cwd()
 let folderName = defaultFolderName

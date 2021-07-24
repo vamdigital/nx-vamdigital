@@ -5,7 +5,7 @@ to start working on.
 
 ## Starting Development server
 
-`npm run dev`
+`npm start`
 
 ### Deploy to github page - ghpages
 

@@ -14,7 +14,9 @@ let isVSCode = false
 const repo = 'https://github.com/vamdigital/nx-vamdigital.git'
 const execPromise = promisify(exec)
 
-console.log(`downloading files 🚀`)
+console.log(
+  "💿 Welcome to Create-VAM-NXApp. Let's get you set up with a new project.",
+)
 
 async function runShellCmd(command) {
   try {
@@ -51,7 +53,7 @@ async function setup() {
       //Change Items
       result['name'] = folderName
       result['description'] = ''
-      result['version'] = '0.0.0'
+      result['version'] = '0.1.0'
 
       // stringify back
       result = JSON.stringify(result)
